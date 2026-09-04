@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelSpace — Interactive Room</title>
+  <meta name="description" content="Explore your hostel room in an interactive 2D top-down layout and see every storage location.">
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ==========================================================================
+       Navbar (shared across all pages)
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="HostelSpace home">
+        <span class="navbar__logo-mark" aria-hidden="true"></span>
+        HostelSpace
+      </a>
+
+      <nav class="navbar__nav" id="primary-nav" aria-label="Primary">
+        <ul class="navbar__links">
+          <li><a href="index.html" class="navbar__link">Home</a></li>
+          <li><a href="rooms.html" class="navbar__link">Rooms</a></li>
+          <li><a href="scanner.html" class="navbar__link">Scanner</a></li>
+          <li><a href="about.html" class="navbar__link">About</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="navbar__toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Main content — Room View page (Phase 4)
+       ========================================================================== -->
+  <main id="main-content">
+
+    <!-- Room Header: title, capacity badge, search -->
+    <section class="room-header container">
+      <div class="room-header__top">
+        <div class="room-header__titles">
+          <p class="eyebrow">Room Organizer</p>
+          <div class="room-header__title-row">
+            <h1 id="roomTitle" class="room-header__title">2 AC Room</h1>
+            <span class="room-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg>
+              <span id="roomBadgeText">2 Students</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="room-search">
+          <label for="belongingSearch" class="visually-hidden">Search your belongings</label>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="search" id="belongingSearch" placeholder="Search your belongings..." autocomplete="off" aria-expanded="false" aria-controls="searchResults">
+          <div class="search-results" id="searchResults" role="listbox" aria-label="Search results" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workspace: interactive room (70%) + storage directory (30%) -->
+    <section class="room-workspace container">
+      <div class="room-workspace__grid">
+
+        <!-- Interactive 2D Room -->
+        <div class="room-panel" id="roomFloorWrapper">
+          <div class="room-panel__head">
+            <h2>Interactive Floor Plan</h2>
+            <p class="room-panel__hint">Click any highlighted area to view its storage details.</p>
+          </div>
+
+          <div class="room-floor-wrapper">
+
+            <!-- 2 AC Room — fully implemented layout -->
+            <div class="room-floor" id="roomFloor2ac" data-room-type="2ac">
+              <div class="rf-window-glass" aria-hidden="true"></div>
+              <div class="rf-door-gap" aria-hidden="true"></div>
+
+              <div class="room-floor__surface">
+
+                <!-- Window slab (storage) -->
+                <button type="button" class="rf-interactive rf-window-slab" style="left:34%; top:7%; width:32%; height:6%;" data-location-id="window-slab" data-tooltip="Window Slab" aria-pressed="false" aria-label="Window Slab storage"></button>
+
+                <!-- Below window (storage) -->
+                <button type="button" class="rf-interactive rf-hotspot-chip" style="left:50%; top:17%; width:9%; height:9%; transform:translate(-50%,-50%);" data-location-id="below-window" data-tooltip="Below Window" aria-pressed="false" aria-label="Below Window storage"></button>
+
+                <!-- Wall shelves (storage) -->
+                <button type="button" class="rf-interactive rf-shelf" style="left:18%; top:2%; width:14%; height:4%;" data-location-id="shelf-a" data-tooltip="Shelf A" aria-pressed="false" aria-label="Shelf A storage"></button>
+                <button type="button" class="rf-interactive rf-shelf" style="left:68%; top:2%; width:14%; height:4%;" data-location-id="shelf-b" data-tooltip="Shelf B" aria-pressed="false" aria-label="Shelf B storage"></button>
+
+                <!-- AC unit (decorative) -->
+                <div class="rf-piece rf-ac" style="left:84%; top:1%; width:12%; height:5%;" aria-hidden="true"></div>
+
+                <!-- Beds (decorative) -->
+                <div class="rf-piece rf-bed" style="left:4%; top:10%; width:16%; height:40%;" aria-hidden="true"></div>
+                <div class="rf-piece rf-bed" style="left:80%; top:10%; width:16%; height:40%;" aria-hidden="true"></div>
+
+                <!-- Under-bed storage -->
+                <button type="button" class="rf-interactive rf-under-bed" style="left:4%; top:44%; width:16%; height:6%;" data-location-id="under-bed-a" data-tooltip="Under Bed A" aria-pressed="false" aria-label="Under Bed A storage"></button>
+                <button type="button" class="rf-interactive rf-under-bed" style="left:80%; top:44%; width:16%; height:6%;" data-location-id="under-bed-b" data-tooltip="Under Bed B" aria-pressed="false" aria-label="Under Bed B storage"></button>
+
+                <!-- Above-cupboard storage -->
+                <button type="button" class="rf-interactive rf-above-cupboard" style="left:4%; top:50%; width:16%; height:4%;" data-location-id="above-cupboard-a" data-tooltip="Above Cupboard A" aria-pressed="false" aria-label="Above Cupboard A storage"></button>
+                <button type="button" class="rf-interactive rf-above-cupboard" style="left:80%; top:50%; width:16%; height:4%;" data-location-id="above-cupboard-b" data-tooltip="Above Cupboard B" aria-pressed="false" aria-label="Above Cupboard B storage"></button>
+
+                <!-- Cupboards (storage) -->
+                <button type="button" class="rf-interactive rf-cupboard" style="left:4%; top:54%; width:16%; height:30%;" data-location-id="cupboard-a" data-tooltip="Cupboard A" aria-pressed="false" aria-label="Cupboard A storage">
+                  <span class="rf-handle rf-handle--left" aria-hidden="true"></span>
+                  <span class="rf-handle rf-handle--right" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="rf-interactive rf-cupboard" style="left:80%; top:54%; width:16%; height:30%;" data-location-id="cupboard-b" data-tooltip="Cupboard B" aria-pressed="false" aria-label="Cupboard B storage">
+                  <span class="rf-handle rf-handle--left" aria-hidden="true"></span>
+                  <span class="rf-handle rf-handle--right" aria-hidden="true"></span>
+                </button>
+
+                <!-- Mirror (decorative) -->
+                <div class="rf-piece rf-mirror" style="left:4%; top:86%; width:16%; height:10%;" aria-hidden="true"></div>
+
+                <!-- Chairs (decorative) -->
+                <div class="rf-piece rf-chair" style="left:26%; top:66%; width:12%; height:11%;" aria-hidden="true"></div>
+                <div class="rf-piece rf-chair" style="left:62%; top:66%; width:12%; height:11%;" aria-hidden="true"></div>
+
+                <!-- Desks (decorative) -->
+                <div class="rf-piece rf-desk" style="left:22%; top:78%; width:18%; height:14%;" aria-hidden="true"></div>
+                <div class="rf-piece rf-desk" style="left:60%; top:78%; width:18%; height:14%;" aria-hidden="true"></div>
+
+                <!-- Door (decorative: leaf + swing arc) -->
+                <div class="rf-piece rf-door" style="left:42%; top:85%; width:16%; height:14%;" aria-hidden="true">
+                  <span class="rf-door__arc"></span>
+                  <span class="rf-door__leaf"></span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Placeholder for room types not yet built -->
+            <div class="room-coming-soon" id="roomComingSoon" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg>
+              <h2>The <span id="comingSoonType">4 AC Room</span> layout is on its way</h2>
+              <p>This interactive floor plan is still being built. Try the 2 AC room to explore the organizer today.</p>
+              <a href="room-view.html?type=2ac" class="btn btn--secondary">View 2 AC Room</a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Storage Directory -->
+        <aside class="directory-panel" aria-label="Storage directory">
+          <div class="directory-panel__head">
+            <h2>Storage Directory</h2>
+            <p class="directory-panel__count">10 storage locations</p>
+          </div>
+
+          <ul class="directory-list" id="directoryList2ac">
+            <li class="directory-item">
+              <button type="button" class="directory-item__toggle" data-location-id="cupboard-a" aria-expanded="false" aria-controls="folder-cupboard-a">
+                <svg class="directory-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+                <span class="directory-item__label">Cupboard A</span>
+                <svg class="directory-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="directory-item__panel" id="folder-cupboard-a" hidden>
+                <p class="directory-item__empty">No storage boxes created yet.</p>
+              </div>
+            </li>
+
+            <li class="directory-item">
+              <button type="button" class="directory-item__toggle" data-location-id="cupboard-b" aria-expanded="false" aria-controls="folder-cupboard-b">
+                <svg class="directory-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+                <span class="directory-item__label">Cupboard B</span>
+                <svg class="directory-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="directory-item__panel" id="folder-cupboard-b" hidden>
+                <p class="directory-item__empty">No storage boxes created yet.</p>
+              </div>
+            </li>
+
+            <li class="directory-item">
+              <button type="button" class="directory-item__toggle" data-location-id="shelf-a" aria-expanded="false" aria-controls="folder-shelf-a">
+                <svg class="directory-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+                <span class="directory-item__label">Shelf A</span>
+                <svg class="directory-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="directory-item__panel" id="folder-shelf-a" hidden>
+                <p class="directory-item__empty">No storage boxes created yet.</p>
+              </div>
+            </li>
+
+            <li class="directory-item">
+              <button type="button" class="directory-item__toggle" data-location-id="shelf-b" aria-expanded="false" aria-controls="folder-shelf-b">
+                <svg class="directory-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+                <span class="directory-item__label">Shelf B</span>
+                <svg class="directory-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="directory-item__panel" id="folder-shelf-b" hidden>
+                <p class="directory-item__empty">No storage boxes created yet.</p>
+              </div>
+            </li>
+
+            <li class="directory-item">
+              <button type="button" class="directory-item__toggle" data-location-id="under-bed-a" aria-expanded="false" aria-controls="folder-under-bed-a">
+                <svg class="directory-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+                <span class="directory-item__label">Under Bed A</span>
+                <svg class="directory-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="directory-item__panel" id="folder-under-bed-a" hidden>
+                <p class="directory-item__empty">No storage boxes created yet.</p>
+              </div>
+            </li>
+
+            <li class="directory-item">
+              <button type="button" class="directory-item__toggle" data-location-id="under-bed-b" aria-expanded="false" aria-controls="folder-under-bed-b">
+                <svg class="directory-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+                <span class="directory-item__label">Under Bed B</span>
+                <svg class="directory-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="directory-item__panel" id="folder-under-bed-b" hidden>
+                <p class="directory-item__empty">No storage boxes created yet.</p>
+              </div>
+            </li>
+
+            <li class="directory-item">
+              <button type="button" class="directory-item__toggle" data-location-id="window-slab" aria-expanded="false" aria-controls="folder-window-slab">
+                <svg class="directory-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+                <span class="directory-item__label">Window Slab</span>
+                <svg class="directory-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="directory-item__panel" id="folder-window-slab" hidden>
+                <p class="directory-item__empty">No storage boxes created yet.</p>
+              </div>
+            </li>
+
+            <li class="directory-item">
+              <button type="button" class="directory-item__toggle" data-location-id="below-window" aria-expanded="false" aria-controls="folder-below-window">
+                <svg class="directory-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+                <span class="directory-item__label">Below Window</span>
+                <svg class="directory-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="directory-item__panel" id="folder-below-window" hidden>
+                <p class="directory-item__empty">No storage boxes created yet.</p>
+              </div>
+            </li>
+
+            <li class="directory-item">
+              <button type="button" class="directory-item__toggle" data-location-id="above-cupboard-a" aria-expanded="false" aria-controls="folder-above-cupboard-a">
+                <svg class="directory-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+                <span class="directory-item__label">Above Cupboard A</span>
+                <svg class="directory-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="directory-item__panel" id="folder-above-cupboard-a" hidden>
+                <p class="directory-item__empty">No storage boxes created yet.</p>
+              </div>
+            </li>
+
+            <li class="directory-item">
+              <button type="button" class="directory-item__toggle" data-location-id="above-cupboard-b" aria-expanded="false" aria-controls="folder-above-cupboard-b">
+                <svg class="directory-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+                <span class="directory-item__label">Above Cupboard B</span>
+                <svg class="directory-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="directory-item__panel" id="folder-above-cupboard-b" hidden>
+                <p class="directory-item__empty">No storage boxes created yet.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="directory-empty" id="directoryComingSoon" hidden>
+            <p>No storage boxes created yet.</p>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- Information Panel -->
+      <div class="info-panel" id="infoPanel" aria-live="polite">
+        <div class="info-panel__empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-7.58 7-12A7 7 0 0 0 5 9c0 4.42 7 12 7 12Z"/><circle cx="12" cy="9" r="2.6"/></svg>
+          <p>Select a storage location from the room or directory.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       Footer (shared across all pages)
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo">
+          <span class="navbar__logo-mark" aria-hidden="true"></span>
+          HostelSpace
+        </p>
+        <p class="footer__tagline">Modern student housing, designed around real life.</p>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Quick Navigation</h3>
+        <ul class="footer__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Rooms</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Technologies Used</h3>
+        <ul class="footer__list">
+          <li><span>HTML5</span></li>
+          <li><span>CSS3</span></li>
+          <li><span>Vanilla JavaScript</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; 2026 HostelSpace. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelSpace — Choose Your Hostel Room</title>
+  <meta name="description" content="Select your room type to begin organizing your belongings through an interactive visual layout.">
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ==========================================================================
+       Navbar (shared across all pages)
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="HostelSpace home">
+        <span class="navbar__logo-mark" aria-hidden="true"></span>
+        HostelSpace
+      </a>
+
+      <nav class="navbar__nav" id="primary-nav" aria-label="Primary">
+        <ul class="navbar__links">
+          <li><a href="index.html" class="navbar__link">Home</a></li>
+          <li><a href="rooms.html" class="navbar__link">Rooms</a></li>
+          <li><a href="scanner.html" class="navbar__link">Scanner</a></li>
+          <li><a href="about.html" class="navbar__link">About</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="navbar__toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Main content — Rooms page (Phase 3)
+       ========================================================================== -->
+  <main id="main-content">
+
+    <!-- Page Hero -->
+    <section class="page-hero container">
+      <div class="page-hero__inner">
+        <p class="eyebrow">Room Selection</p>
+        <h1 class="page-hero__title">Choose Your Hostel Room</h1>
+        <p class="page-hero__subtitle">Select your room type to begin organizing your belongings through an interactive visual layout.</p>
+      </div>
+    </section>
+
+    <!-- Room Cards -->
+    <section class="section container reveal">
+      <div class="rooms-grid reveal-group">
+
+        <!-- Card 1: 2 AC Room -->
+        <article class="card room-card reveal-item">
+          <div class="room-card__head">
+            <h2 class="room-card__title">2 AC Room</h2>
+            <span class="room-card__capacity">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg>
+              2 Students
+            </span>
+          </div>
+
+          <p class="room-card__description">A comfortable room with two individual beds, study desks and personal storage.</p>
+
+          <div class="room-preview" aria-hidden="true">
+            <div class="rp-row rp-row--thin">
+              <span class="rp-item rp-item--window"></span>
+              <span class="rp-item rp-item--ac"></span>
+            </div>
+            <div class="rp-row rp-row--main">
+              <span class="rp-item rp-item--bed"></span>
+              <span class="rp-item rp-item--bed"></span>
+            </div>
+            <div class="rp-row rp-row--thin">
+              <span class="rp-item rp-item--desk"></span>
+              <span class="rp-item rp-item--chair"></span>
+              <span class="rp-item rp-item--desk"></span>
+              <span class="rp-item rp-item--chair"></span>
+            </div>
+            <div class="rp-row rp-row--thin">
+              <span class="rp-item rp-item--cupboard"></span>
+              <span class="rp-item rp-item--cupboard"></span>
+              <span class="rp-item rp-item--shelf"></span>
+              <span class="rp-item rp-item--shelf"></span>
+            </div>
+          </div>
+
+          <ul class="room-card__features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 Beds</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 Desks</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 Chairs</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 Cupboards</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 Wall Shelves</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Window</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>AC</li>
+          </ul>
+
+          <a href="room-view.html?type=2ac" class="btn btn--primary btn--block room-card__cta">Explore Room</a>
+        </article>
+
+        <!-- Card 2: 4 AC Room -->
+        <article class="card room-card reveal-item">
+          <div class="room-card__head">
+            <h2 class="room-card__title">4 AC Room</h2>
+            <span class="room-card__capacity">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg>
+              4 Students
+            </span>
+          </div>
+
+          <p class="room-card__description">Shared room with two bunk beds and dedicated storage for every student.</p>
+
+          <div class="room-preview" aria-hidden="true">
+            <div class="rp-row rp-row--thin">
+              <span class="rp-item rp-item--window"></span>
+              <span class="rp-item rp-item--ac"></span>
+            </div>
+            <div class="rp-row rp-row--main">
+              <span class="rp-item rp-item--bunk"></span>
+              <span class="rp-item rp-item--bunk"></span>
+            </div>
+            <div class="rp-row rp-row--thin">
+              <span class="rp-item rp-item--cupboard"></span>
+              <span class="rp-item rp-item--cupboard"></span>
+              <span class="rp-item rp-item--cupboard"></span>
+              <span class="rp-item rp-item--cupboard"></span>
+            </div>
+            <div class="rp-row rp-row--thin">
+              <span class="rp-item rp-item--shelf"></span>
+              <span class="rp-item rp-item--shelf"></span>
+              <span class="rp-item rp-item--shelf"></span>
+              <span class="rp-item rp-item--shelf"></span>
+            </div>
+          </div>
+
+          <ul class="room-card__features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 Bunk Beds</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>4 Cupboards</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>4 Shelves</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Window</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>AC</li>
+          </ul>
+
+          <a href="room-view.html?type=4ac" class="btn btn--primary btn--block room-card__cta">Explore Room</a>
+        </article>
+
+        <!-- Card 3: 6 AC Room -->
+        <article class="card room-card reveal-item">
+          <div class="room-card__head">
+            <h2 class="room-card__title">6 AC Room</h2>
+            <span class="room-card__capacity">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg>
+              6 Students
+            </span>
+          </div>
+
+          <p class="room-card__description">Large hostel room divided into two sections with organized storage spaces.</p>
+
+          <div class="room-preview" aria-hidden="true">
+            <div class="rp-row rp-row--thin">
+              <span class="rp-item rp-item--window"></span>
+              <span class="rp-item rp-item--window"></span>
+              <span class="rp-item rp-item--ac"></span>
+              <span class="rp-item rp-item--ac"></span>
+            </div>
+            <div class="rp-row rp-row--main">
+              <span class="rp-item rp-item--bunk"></span>
+              <span class="rp-item rp-item--bunk"></span>
+              <span class="rp-item rp-item--bunk"></span>
+            </div>
+            <div class="rp-row rp-row--thin">
+              <span class="rp-item rp-item--desk"></span>
+              <span class="rp-item rp-item--desk"></span>
+              <span class="rp-item rp-item--desk"></span>
+              <span class="rp-item rp-item--desk"></span>
+              <span class="rp-item rp-item--desk"></span>
+              <span class="rp-item rp-item--desk"></span>
+            </div>
+            <div class="rp-row rp-row--thin">
+              <span class="rp-item rp-item--cupboard"></span>
+              <span class="rp-item rp-item--cupboard"></span>
+              <span class="rp-item rp-item--cupboard"></span>
+              <span class="rp-item rp-item--cupboard"></span>
+              <span class="rp-item rp-item--cupboard"></span>
+              <span class="rp-item rp-item--cupboard"></span>
+            </div>
+            <div class="rp-row rp-row--thin">
+              <span class="rp-item rp-item--shelf"></span>
+              <span class="rp-item rp-item--shelf"></span>
+              <span class="rp-item rp-item--shelf"></span>
+              <span class="rp-item rp-item--shelf"></span>
+              <span class="rp-item rp-item--shelf"></span>
+              <span class="rp-item rp-item--shelf"></span>
+              <span class="rp-item rp-item--mirror"></span>
+            </div>
+          </div>
+
+          <ul class="room-card__features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>3 Bunk Beds</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>6 Cupboards</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>6 Desks</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>6 Chairs</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>6 Shelves</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 Windows</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 AC Units</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Mirror</li>
+          </ul>
+
+          <a href="room-view.html?type=6ac" class="btn btn--primary btn--block room-card__cta">Explore Room</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Room Comparison -->
+    <section class="section container reveal">
+      <div class="features__header">
+        <p class="eyebrow">Side by Side</p>
+        <h2>Compare Room Types</h2>
+      </div>
+
+      <div class="compare">
+        <div class="compare__scroll">
+          <table>
+            <caption class="visually-hidden">Comparison of 2 AC, 4 AC, and 6 AC hostel room types</caption>
+            <thead>
+              <tr>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">2 AC Room</th>
+                <th scope="col">4 AC Room</th>
+                <th scope="col">6 AC Room</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Capacity</th>
+                <td>2 Students</td>
+                <td>4 Students</td>
+                <td>6 Students</td>
+              </tr>
+              <tr>
+                <th scope="row">Beds</th>
+                <td>2</td>
+                <td>2 Bunk Beds</td>
+                <td>3 Bunk Beds</td>
+              </tr>
+              <tr>
+                <th scope="row">Desks</th>
+                <td>2</td>
+                <td>—</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <th scope="row">Cupboards</th>
+                <td>2</td>
+                <td>4</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <th scope="row">Shelves</th>
+                <td>2</td>
+                <td>4</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <th scope="row">Windows</th>
+                <td>1</td>
+                <td>1</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <th scope="row">AC Units</th>
+                <td>1</td>
+                <td>1</td>
+                <td>2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="section container reveal">
+      <div class="stats__grid reveal-group">
+        <div class="card stat-card reveal-item">
+          <p class="stat-card__value" data-count-to="3">0</p>
+          <p class="stat-card__label">Room Types</p>
+        </div>
+        <div class="card stat-card reveal-item">
+          <p class="stat-card__value" data-count-to="30" data-suffix="+">0</p>
+          <p class="stat-card__label">Storage Areas</p>
+        </div>
+        <div class="card stat-card reveal-item">
+          <p class="stat-card__value">2D</p>
+          <p class="stat-card__label">Interactive Room Layout</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call To Action -->
+    <section class="section container">
+      <div class="cta reveal">
+        <h2 class="cta__title">Ready to Start Organizing?</h2>
+        <p class="cta__text">Choose a room type and begin building your digital room organizer.</p>
+        <a href="room-view.html" class="btn btn--primary">Open Room Organizer</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       Footer (shared across all pages)
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo">
+          <span class="navbar__logo-mark" aria-hidden="true"></span>
+          HostelSpace
+        </p>
+        <p class="footer__tagline">Modern student housing, designed around real life.</p>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Quick Navigation</h3>
+        <ul class="footer__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Rooms</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Technologies Used</h3>
+        <ul class="footer__list">
+          <li><span>HTML5</span></li>
+          <li><span>CSS3</span></li>
+          <li><span>Vanilla JavaScript</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; 2026 HostelSpace. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

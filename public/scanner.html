@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelSpace — Smart Scanner</title>
+  <meta name="description" content="Use AI to scan your belongings and organize your hostel room.">
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ==========================================================================
+       Navbar
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="HostelSpace home">
+        <span class="navbar__logo-mark" aria-hidden="true"></span>
+        HostelSpace
+      </a>
+
+      <nav class="navbar__nav" id="primary-nav" aria-label="Primary">
+        <ul class="navbar__links">
+          <li><a href="index.html" class="navbar__link">Home</a></li>
+          <li><a href="rooms.html" class="navbar__link">Rooms</a></li>
+          <li><a href="scanner.html" class="navbar__link">Scanner</a></li>
+          <li><a href="about.html" class="navbar__link">About</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="navbar__toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Main content — Smart Scanner
+       ========================================================================== -->
+  <main id="main-content" class="container">
+    
+    <section class="scanner-header text-center reveal-group">
+      <p class="eyebrow">AI Powered</p>
+      <h1>Smart Scanner</h1>
+      <p>Point your camera at an object to get intelligent storage suggestions based on frequency of use and room layout.</p>
+    </section>
+
+    <!-- API Key Modal (BYOK Approach) -->
+    <div id="apiKeyModal" class="api-modal" hidden>
+        <div class="api-modal__content card">
+            <h3>API Key Required</h3>
+            <p>To use the AI scanner, please enter your Google Gemini API key. This is stored securely on your device and never sent to our servers.</p>
+            <div class="form-group">
+                <input type="password" id="apiKeyInput" placeholder="AIzaSy..." class="form-input">
+            </div>
+            <button id="saveApiKeyBtn" class="btn btn--primary">Save & Start Scanner</button>
+        </div>
+    </div>
+
+    <!-- Scanner Interface -->
+    <div class="scanner-interface" id="scannerInterface">
+        <div class="scanner-viewport card">
+            <video id="cameraStream" autoplay playsinline class="scanner-video"></video>
+            <canvas id="captureCanvas" class="visually-hidden"></canvas>
+            <div class="scanner-overlay">
+                <div class="scanner-frame"></div>
+            </div>
+            <div class="scanner-controls">
+                <button id="captureBtn" class="btn btn--accent btn--large scanner-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                    Scan Object
+                </button>
+            </div>
+        </div>
+
+        <div class="scanner-results" id="scannerResults" hidden>
+            <div class="card result-card">
+                <div id="loadingIndicator" class="loading-state" hidden>
+                    <div class="spinner"></div>
+                    <p>Analyzing object with AI...</p>
+                </div>
+                
+                <div id="analysisContent" hidden>
+                    <div class="result-header">
+                        <h2 id="objName">Object Name</h2>
+                        <span id="objCategory" class="badge">Category</span>
+                    </div>
+                    
+                    <div class="result-details">
+                        <div class="detail-group">
+                            <strong>Purpose:</strong> <span id="objPurpose">Description...</span>
+                        </div>
+                        <div class="detail-group">
+                            <strong>Est. Size:</strong> <span id="objSize">Dimensions...</span>
+                        </div>
+                    </div>
+
+                    <div class="suggestion-box">
+                        <h3>💡 Smart Storage Suggestion</h3>
+                        <p id="objSuggestion">The AI suggests putting this...</p>
+                    </div>
+
+                    <button id="resetScannerBtn" class="btn btn--secondary mt-4">Scan Another Object</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </main>
+
+  <script src="js/script.js"></script>
+  <script src="js/scanner.js"></script>
+</body>
+</html>

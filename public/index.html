@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelSpace — Your Digital Hostel Room Organizer</title>
+  <meta name="description" content="HostelSpace helps students organize and visually locate their belongings inside hostel rooms using interactive room layouts.">
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ==========================================================================
+       Navbar (shared across all pages)
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="HostelSpace home">
+        <span class="navbar__logo-mark" aria-hidden="true"></span>
+        HostelSpace
+      </a>
+
+      <nav class="navbar__nav" id="primary-nav" aria-label="Primary">
+        <ul class="navbar__links">
+          <li><a href="index.html" class="navbar__link">Home</a></li>
+          <li><a href="rooms.html" class="navbar__link">Rooms</a></li>
+          <li><a href="scanner.html" class="navbar__link">Scanner</a></li>
+          <li><a href="about.html" class="navbar__link">About</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="navbar__toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Main content — Home page (Phase 2)
+       ========================================================================== -->
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="eyebrow hero__eyebrow">Welcome to HostelSpace</p>
+          <h1 class="hero__title">HostelSpace</h1>
+          <p class="hero__tagline">Your Digital Hostel Room Organizer</p>
+          <p class="hero__description">HostelSpace helps students organize and visually locate their belongings inside hostel rooms using interactive room layouts.</p>
+          <div class="hero__actions">
+            <a href="rooms.html" class="btn btn--primary">Explore Rooms</a>
+            <a href="about.html" class="btn btn--secondary">Learn More</a>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <!-- Hand-built illustration: bed, wardrobe, desk — no stock imagery -->
+          <svg class="hero-illustration" viewBox="0 0 480 480" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <rect class="il-floor" x="40" y="40" width="400" height="400" rx="28"/>
+            <rect class="il-window" x="190" y="28" width="100" height="24" rx="6"/>
+
+            <!-- Bed -->
+            <rect class="il-bed" x="76" y="76" width="150" height="200" rx="18"/>
+            <rect class="il-pillow" x="94" y="94" width="114" height="48" rx="12"/>
+            <line class="il-blanket-line" x1="94" y1="172" x2="208" y2="172"/>
+            <line class="il-blanket-line" x1="94" y1="198" x2="208" y2="198"/>
+            <line class="il-blanket-line" x1="94" y1="224" x2="208" y2="224"/>
+
+            <!-- Wardrobe -->
+            <rect class="il-wardrobe" x="268" y="76" width="136" height="200" rx="14"/>
+            <line class="il-wardrobe-line" x1="336" y1="86" x2="336" y2="266"/>
+            <circle class="il-handle" cx="328" cy="176" r="3.5"/>
+            <circle class="il-handle" cx="344" cy="176" r="3.5"/>
+
+            <!-- Desk + chair -->
+            <rect class="il-desk" x="76" y="316" width="328" height="60" rx="12"/>
+            <rect class="il-chair" x="220" y="392" width="52" height="36" rx="10"/>
+
+            <!-- Plant -->
+            <ellipse class="il-plant-leaf" cx="362" cy="392" rx="10" ry="16" transform="rotate(-20 362 392)"/>
+            <ellipse class="il-plant-leaf" cx="378" cy="392" rx="10" ry="16" transform="rotate(20 378 392)"/>
+            <rect class="il-plant-pot" x="356" y="402" width="28" height="22" rx="4"/>
+
+            <!-- Floor texture -->
+            <circle class="il-dot" cx="104" cy="330" r="3"/>
+            <circle class="il-dot" cx="124" cy="352" r="3"/>
+          </svg>
+
+          <div class="hero__found-card">
+            <span class="hero__found-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <span class="hero__found-text">
+              <span class="hero__found-label">Backpack found</span>
+              <span class="hero__found-location">Wardrobe · Shelf 2</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section features container reveal">
+      <div class="features__header">
+        <p class="eyebrow">Why HostelSpace</p>
+        <h2>Everything you need to stay organized</h2>
+      </div>
+
+      <div class="features__grid reveal-group">
+        <div class="card feature-card reveal-item">
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 12h18M12 3v18"/>
+            </svg>
+          </span>
+          <h3 class="feature-card__title">Visual Room Layout</h3>
+          <p class="feature-card__text">Navigate your hostel room through an interactive top-down layout.</p>
+        </div>
+
+        <div class="card feature-card reveal-item">
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7.5 12 4l9 3.5-9 3.5-9-3.5Z"/>
+              <path d="M3 7.5v9L12 20l9-3.5v-9"/>
+              <path d="M12 11v9"/>
+            </svg>
+          </span>
+          <h3 class="feature-card__title">Smart Organization</h3>
+          <p class="feature-card__text">Organize belongings into storage areas exactly the way you prefer.</p>
+        </div>
+
+        <div class="card feature-card reveal-item">
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <path d="M21 21l-4.3-4.3"/>
+            </svg>
+          </span>
+          <h3 class="feature-card__title">Quick Search</h3>
+          <p class="feature-card__text">Instantly locate your belongings without searching your room physically.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section steps-section container reveal">
+      <div class="steps__header">
+        <p class="eyebrow">The Process</p>
+        <h2>How It Works</h2>
+      </div>
+
+      <ol class="steps reveal-group">
+        <li class="step reveal-item">
+          <div class="step__icon-wrap">
+            <span class="step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="3" width="14" height="18" rx="1"/>
+                <circle cx="15" cy="12" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span class="step__badge" aria-hidden="true">1</span>
+          </div>
+          <h3 class="step__title">Choose Room</h3>
+          <p class="step__text">Select your room layout to begin.</p>
+        </li>
+
+        <li class="step reveal-item">
+          <div class="step__icon-wrap">
+            <span class="step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7.5 12 4l9 3.5-9 3.5-9-3.5Z"/>
+                <path d="M3 7.5v9L12 20l9-3.5v-9"/>
+                <path d="M12 11v9"/>
+              </svg>
+            </span>
+            <span class="step__badge" aria-hidden="true">2</span>
+          </div>
+          <h3 class="step__title">Organize Storage</h3>
+          <p class="step__text">Map out drawers, shelves, and bins.</p>
+        </li>
+
+        <li class="step reveal-item">
+          <div class="step__icon-wrap">
+            <span class="step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1Z"/>
+              </svg>
+            </span>
+            <span class="step__badge" aria-hidden="true">3</span>
+          </div>
+          <h3 class="step__title">Save Items</h3>
+          <p class="step__text">Log belongings to their exact spot.</p>
+        </li>
+
+        <li class="step reveal-item">
+          <div class="step__icon-wrap">
+            <span class="step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="7"/>
+                <path d="M21 21l-4.3-4.3"/>
+              </svg>
+            </span>
+            <span class="step__badge" aria-hidden="true">4</span>
+          </div>
+          <h3 class="step__title">Find Anything Instantly</h3>
+          <p class="step__text">Search and locate in seconds.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Call To Action -->
+    <section class="section container">
+      <div class="cta reveal">
+        <h2 class="cta__title">Ready to Organize Your Hostel Room?</h2>
+        <p class="cta__text">Set up your first room layout and start finding things instantly.</p>
+        <a href="rooms.html" class="btn btn--primary">Explore Rooms</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       Footer (shared across all pages)
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo">
+          <span class="navbar__logo-mark" aria-hidden="true"></span>
+          HostelSpace
+        </p>
+        <p class="footer__tagline">Modern student housing, designed around real life.</p>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Quick Navigation</h3>
+        <ul class="footer__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Rooms</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__heading">Technologies Used</h3>
+        <ul class="footer__list">
+          <li><span>HTML5</span></li>
+          <li><span>CSS3</span></li>
+          <li><span>Vanilla JavaScript</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; 2026 HostelSpace. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
