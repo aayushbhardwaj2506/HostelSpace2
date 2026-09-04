@@ -542,6 +542,10 @@ function initRoomView() {
     updateFurnitureIndicators(type);
     setupRoomInteractions();
     setupSearch();
+    
+    if (window.db) {
+      syncFirebaseItems(type);
+    }
   } else {
     if (floor2ac) floor2ac.hidden = true;
     if (floorComingSoon) floorComingSoon.hidden = false;
@@ -791,6 +795,64 @@ function updateFurnitureIndicators(roomType) {
     var hasContent = !!(bucket && bucket.boxes.length);
     var hotspot = document.querySelector('.rf-interactive[data-location-id="' + loc.id + '"]');
     if (hotspot) hotspot.classList.toggle('has-content', hasContent);
+  });
+}
+
+/* --------------------------------------------------------------------
+   5.6.5 Firebase Sync
+   -------------------------------------------------------------------- */
+function syncFirebaseItems(roomType) {
+  if (!window.db) return;
+
+  window.db.collection("items").onSnapshot(function (snapshot) {
+    var firebaseItems = [];
+    snapshot.forEach(function (doc) {
+      var data = doc.data();
+      data.id = doc.id;
+      firebaseItems.push(data);
+    });
+
+    var byLocation = {};
+    firebaseItems.forEach(function (item) {
+      var locId = item.locationId || 'shelf-a';
+      if (!byLocation[locId]) byLocation[locId] = [];
+      byLocation[locId].push(item);
+    });
+
+    getLocationsList(roomType).forEach(function (loc) {
+      var bucket = getLocationBucket(roomType, loc.id);
+      if (!bucket) return;
+
+      // Filter out old AI box if it exists
+      bucket.boxes = bucket.boxes.filter(function (box) {
+        return box.id !== 'box_ai_suggestions';
+      });
+
+      if (byLocation[loc.id] && byLocation[loc.id].length > 0) {
+        var aiBox = {
+          id: 'box_ai_suggestions',
+          name: '✨ AI Scanned Items',
+          expanded: true,
+          items: byLocation[loc.id].map(function (fbItem) {
+            return {
+              id: fbItem.id,
+              name: fbItem.name,
+              createdAt: fbItem.timestamp ? fbItem.timestamp.toMillis() : Date.now()
+            };
+          })
+        };
+        bucket.boxes.unshift(aiBox);
+        bucket.expanded = true;
+      }
+    });
+
+    renderAllDirectoryLocations(roomType);
+    updateFurnitureIndicators(roomType);
+    if (activeSelection.locationId) {
+      renderInfoPanelView();
+    }
+  }, function(error) {
+    console.error("Error fetching Firebase items:", error);
   });
 }
 

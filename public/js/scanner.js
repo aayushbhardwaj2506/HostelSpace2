@@ -23,12 +23,15 @@ function initScanner() {
     
     const apiKeyModal = document.getElementById('apiKeyModal');
     const apiKeyInput = document.getElementById('apiKeyInput');
-    const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
+    const saveToRoomBtn = document.getElementById('saveToRoomBtn');
+    
+    let currentScannedItem = null;
 
     let stream = null;
 
+    // --- API Key Management ---
     function checkApiKey() {
-        // Automatically start since we have the key hardcoded
+        // Automatically start since we have the key handled on the backend
         apiKeyModal.setAttribute('hidden', '');
         scannerInterface.removeAttribute('hidden');
         startCamera();
@@ -70,6 +73,10 @@ function initScanner() {
         loadingIndicator.removeAttribute('hidden');
         analysisContent.setAttribute('hidden', '');
         captureBtn.disabled = true;
+        
+        // Reset buttons
+        saveToRoomBtn.disabled = false;
+        saveToRoomBtn.textContent = "Save to Room";
 
         await analyzeImageWithOpenRouter(base64DataUrl);
     });
@@ -77,6 +84,48 @@ function initScanner() {
     resetScannerBtn.addEventListener('click', () => {
         scannerResults.setAttribute('hidden', '');
         captureBtn.disabled = false;
+        currentScannedItem = null;
+    });
+    
+    saveToRoomBtn.addEventListener('click', async () => {
+        if (!currentScannedItem || !window.db) return;
+        
+        saveToRoomBtn.disabled = true;
+        saveToRoomBtn.textContent = "Saving...";
+        
+        try {
+            // Determine a standardized location ID based on the AI's suggestion
+            // For now, we will store the raw suggestion and a standardized "locationId"
+            let locationId = "unknown";
+            const suggestion = currentScannedItem.suggestion.toLowerCase();
+            
+            if (suggestion.includes("cupboard a")) locationId = "cupboard-a";
+            else if (suggestion.includes("cupboard b") || suggestion.includes("cupboard")) locationId = "cupboard-b";
+            else if (suggestion.includes("shelf a") || suggestion.includes("shelf")) locationId = "shelf-a";
+            else if (suggestion.includes("shelf b")) locationId = "shelf-b";
+            else if (suggestion.includes("under bed a") || suggestion.includes("bed")) locationId = "under-bed-a";
+            else if (suggestion.includes("under bed b")) locationId = "under-bed-b";
+            else if (suggestion.includes("window slab") || suggestion.includes("window")) locationId = "window-slab";
+            else locationId = "shelf-a"; // Default fallback
+            
+            await window.db.collection("items").add({
+                name: currentScannedItem.name,
+                category: currentScannedItem.category,
+                purpose: currentScannedItem.purpose,
+                size: currentScannedItem.size,
+                rawSuggestion: currentScannedItem.suggestion,
+                locationId: locationId,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            
+            saveToRoomBtn.textContent = "Saved Successfully ✓";
+            
+        } catch (error) {
+            console.error("Error saving to Firebase:", error);
+            alert("Failed to save item. Make sure your Firestore rules allow writing in test mode.");
+            saveToRoomBtn.disabled = false;
+            saveToRoomBtn.textContent = "Save to Room";
+        }
     });
 
     async function analyzeImageWithOpenRouter(base64DataUrl) {
@@ -96,6 +145,7 @@ function initScanner() {
             }
 
             const data = await response.json();
+            currentScannedItem = data;
             displayResults(data);
 
         } catch (error) {
