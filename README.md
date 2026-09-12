@@ -1,5 +1,6 @@
 # HostelSpace
 site link : https://hostelspace-ai.onrender.com/scanner.html
+
 A modern, premium static website for a student hostel — built with **HTML5, CSS3, and vanilla JavaScript only**. No frameworks, no build tools, no backend. Deploys as-is to GitHub Pages.
 
 ## Phase 1 — Project Foundation ✅ (current)
